@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMD Auto Grinding</title>
+<meta name="description" content="Máquinas CNC de 5 ejes para rebabeo automatizado de piezas fundidas. BMD Auto Grinding, de Bramund for Foundries, en México.">
+<link rel="icon" type="image/png" href="img/icono-bmd.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --carbon:#1d1a1b; --carbon-2:#262223; --carbon-3:#302b2c; --naranja:#f47d20; --naranja-2:#ff9a45; --rojo:#c74026;
+  --bg:#ffffff; --bg-alt:#f6f4f2; --card:#ffffff; --text:#1d1a1b; --muted:#5f5a58; --line:#e8e3df;
+  --on-dark:#ffffff; --on-dark-muted:#b9b1ad;
+  --grad:linear-gradient(90deg,var(--naranja),var(--rojo));
+  --radius:16px; --max:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#141213;--bg-alt:#1a1718;--card:#221e1f;--text:#f3efec;--muted:#b3aba7;--line:#353031}
+}
+:root[data-theme="dark"]{--bg:#141213;--bg-alt:#1a1718;--card:#221e1f;--text:#f3efec;--muted:#b3aba7;--line:#353031}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+section{padding:96px 0;position:relative;overflow-x:clip}
+@media (max-width:640px){section{padding:64px 0}}
+.dark{background:var(--carbon);color:var(--on-dark)}
+.dark .lead,.dark p{color:var(--on-dark-muted)}
+.bar{width:64px;height:4px;border-radius:4px;background:var(--grad);margin-bottom:22px}
+.center .bar{margin-left:auto;margin-right:auto}
+.eyebrow{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja);background:rgba(244,125,32,.1);border:1px solid rgba(244,125,32,.25);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+h1,h2,h3{line-height:1.12;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:clamp(28px,3.8vw,44px);font-weight:900;margin-bottom:16px}
+.lead{font-size:17.5px;color:var(--muted);max-width:640px}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+
+/* botones */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--grad);color:#fff;font-weight:800;font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:0;border-radius:999px;padding:16px 30px;cursor:pointer;transition:transform .25s,box-shadow .25s,gap .25s;box-shadow:0 10px 28px rgba(244,125,32,.35)}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 36px rgba(244,125,32,.5);gap:14px}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+.btn.out{background:transparent;border:1.5px solid rgba(255,255,255,.4);box-shadow:none}
+.btn.out:hover{border-color:var(--naranja);background:rgba(244,125,32,.12)}
+.btn.wa{background:#25d366;box-shadow:0 10px 28px rgba(37,211,102,.3)}
+.btn.wa:hover{background:#1ebe5a;box-shadow:0 16px 36px rgba(37,211,102,.45)}
+.btn svg{width:18px;height:18px;fill:currentColor}
+
+/* aparecer al bajar */
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.l{transform:translateX(-40px)} .js .rv.r{transform:translateX(40px)} .js .rv.z{transform:scale(.94)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
+header.solid{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.08);border-color:#ece7e3}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{height:42px;width:auto}
+.brand .b{display:none}
+header.solid .brand .w{display:none} header.solid .brand .b{display:block}
+.nav nav{display:flex;gap:30px;align-items:center}
+.nav nav a{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#fff;position:relative;transition:color .2s}
+header.solid .nav nav a{color:var(--carbon)}
+.nav nav a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--naranja);transition:width .25s}
+.nav nav a:not(.btn):hover::after{width:100%}
+.nav nav a:not(.btn):hover{color:var(--naranja)}
+.nav .btn{padding:11px 22px;font-size:12px;color:#fff!important}
+@media (max-width:900px){.nav nav a:not(.btn){display:none}}
+
+/* portada */
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--carbon);color:#fff;padding:120px 0 80px;overflow:hidden}
+.hero .bg{position:absolute;inset:-4%;background:url(img/portada.webp) center/cover no-repeat;animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08) translateX(-1.5%)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,18,.96) 0%,rgba(20,17,18,.82) 48%,rgba(20,17,18,.45) 100%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;width:100%}
+.hero h1{font-size:clamp(38px,5.4vw,66px);font-weight:900;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:19px;color:#d9d2ce;max-width:520px;margin-bottom:26px}
+.ticks{list-style:none;display:grid;gap:12px;margin-bottom:32px}
+.ticks li{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#ece6e2}
+.ticks li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;background:rgba(244,125,32,.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f47d20' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat;margin-top:-1px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{min-height:auto}}
+
+/* formulario */
+.form{background:rgba(38,34,35,.82);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:32px;box-shadow:0 30px 70px rgba(0,0,0,.45);color:#fff}
+.form h3{font-size:22px;font-weight:800;margin-bottom:4px}
+.form p.sub{font-size:14px;color:var(--on-dark-muted);margin-bottom:22px}
+.form label{display:block;font-size:12.5px;font-weight:700;margin-bottom:7px;color:#e9e3df}
+.form .f{margin-bottom:14px}
+.form input,.form select{width:100%;font:inherit;font-size:15px;padding:13px 15px;border:1.5px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(0,0,0,.25);color:#fff;transition:border-color .2s,background .2s,box-shadow .2s}
+.form select option{color:#1d1a1b}
+.form input::placeholder{color:#8a817d}
+.form input:focus,.form select:focus{outline:none;border-color:var(--naranja);background:rgba(0,0,0,.35);box-shadow:0 0 0 4px rgba(244,125,32,.18)}
+.form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.form{padding:22px}.form .row2{grid-template-columns:1fr}}
+.form .btn{width:100%;margin-top:8px;font-size:14px}
+.form .safe{font-size:12px;color:#8f8682;text-align:center;margin-top:12px}
+
+/* maquinas */
+#maquinas{background:var(--carbon);color:#fff}
+#maquinas .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+#maquinas .head .lead{color:var(--on-dark-muted)}
+.machines{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media (max-width:1100px){.machines{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.machines{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.machines{grid-template-columns:1fr}}
+.m{background:var(--carbon-2);border:1px solid #3a3435;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s,opacity .8s;position:relative}
+.m:hover{transform:translateY(-8px);border-color:var(--naranja);box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 0 1px rgba(244,125,32,.4),0 0 40px rgba(244,125,32,.18)}
+.m .ph{background:linear-gradient(180deg,#fff,#efebe8);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden}
+.m .ph img{max-height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.m:hover .ph img{transform:scale(1.1) rotate(-1.5deg)}
+.m .body{padding:18px 16px;display:flex;flex-direction:column;flex:1}
+.m h3{font-size:21px;font-weight:900;margin-bottom:12px;transition:color .3s}
+.m:hover h3{color:var(--naranja)}
+.m ul{list-style:none;font-size:12.5px;color:#cfc7c3;display:grid;gap:7px;margin-bottom:18px;flex:1;align-content:start}
+.m li{display:flex;gap:7px}
+.m li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--naranja);margin-top:7px}
+.m li b{color:#fff;font-weight:700}
+.m .btn{padding:12px 10px;font-size:11px;width:100%}
+.m.feat::before{content:"Destacada";position:absolute;top:12px;right:12px;z-index:2;background:var(--grad);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+
+/* GV 230 destacada */
+#gv230{background:var(--bg)}
+.feat-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
+@media (max-width:900px){.feat-grid{grid-template-columns:1fr;gap:40px}}
+.vwrap{position:relative}
+.vwrap .glow{position:absolute;inset:-14px;border-radius:32px;background:var(--grad);filter:blur(28px);opacity:.45;animation:tilt 8s ease-in-out infinite;transition:opacity .4s}
+.vwrap:hover .glow{opacity:.8}
+@keyframes tilt{0%,100%{transform:rotate(0)}25%{transform:rotate(1.2deg)}75%{transform:rotate(-1.2deg)}}
+.vwrap .vbox{position:relative;border-radius:24px;overflow:hidden;background:#000;box-shadow:0 30px 60px rgba(0,0,0,.35);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.vwrap:hover .vbox{transform:scale(1.02)}
+.vwrap video{width:100%;height:100%;object-fit:cover}
+.v916{aspect-ratio:9/16;max-width:380px;margin:0 auto}
+.v11{aspect-ratio:1/1}
+.v45{aspect-ratio:4/5}
+.feat-grid h2 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 32px}
+@media (max-width:480px){.specs{grid-template-columns:1fr 1fr}}
+.specs div{background:var(--bg-alt);border:1px solid var(--line);border-radius:14px;padding:16px;transition:transform .3s,border-color .3s,background .3s}
+.specs div:hover{transform:translateY(-4px);border-color:var(--naranja);background:rgba(244,125,32,.06)}
+.specs b{display:block;font-size:20px;font-weight:900;color:var(--naranja);font-variant-numeric:tabular-nums}
+.specs span{font-size:12.5px;color:var(--muted)}
+.apps{margin-top:72px;padding-top:40px;border-top:1px solid var(--line);text-align:center}
+.apps .t{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.apps .row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.apps .row span{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;padding:14px 22px;border:1.5px solid var(--line);border-radius:999px;transition:all .3s;cursor:default}
+.apps .row span::before{content:"›";color:var(--naranja);font-size:22px;line-height:0;transition:transform .3s}
+.apps .row span:hover{background:var(--grad);color:#fff;border-color:transparent;transform:translateY(-4px);box-shadow:0 12px 26px rgba(244,125,32,.35)}
+.apps .row span:hover::before{color:#fff;transform:translateX(3px)}
+
+/* productividad */
+#productividad{background:linear-gradient(180deg,var(--bg),var(--bg-alt));overflow:hidden}
+.blob{position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(244,125,32,.08);filter:blur(60px);pointer-events:none}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative}
+@media (max-width:900px){.split{grid-template-columns:1fr;gap:40px}}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0 24px}
+@media (max-width:480px){.kpis{grid-template-columns:1fr}}
+.kpi{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--naranja);border-radius:16px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.05);transition:transform .35s,box-shadow .35s}
+.kpi:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.kpi h3{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;margin-bottom:14px}
+.ic{flex:none;width:36px;height:36px;border-radius:10px;background:rgba(244,125,32,.12);display:flex;align-items:center;justify-content:center;transition:all .35s}
+.ic svg{width:18px;height:18px;stroke:var(--naranja);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
+.kpi .r{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px dashed var(--line)}
+.kpi .r b{color:var(--text);font-size:12.5px;background:var(--bg-alt);padding:4px 9px;border-radius:8px;text-align:right}
+.kpi .r b.ok{background:rgba(22,163,74,.12);color:#15803d}
+.kpi .res{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--naranja)}
+.kpi .res b{font-size:13px;letter-spacing:0;text-transform:none;color:#15803d;background:rgba(22,163,74,.12);padding:4px 10px;border-radius:8px}
+.ben-t{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:12px}
+.bens{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px}
+@media (max-width:480px){.bens{grid-template-columns:1fr}}
+.ben{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13.5px;color:var(--muted);transition:all .35s}
+.ben .ic{width:32px;height:32px}
+.ben:hover{background:var(--carbon);color:#fff;border-color:var(--carbon);transform:translateY(-3px)}
+.ben:hover .ic{background:var(--grad);transform:scale(1.1) rotate(-6deg)}
+.ben:hover .ic svg{stroke:#fff}
+
+/* pilares */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:48px 0 44px}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;transition:all .4s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
+.pillar::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:0;background:var(--grad);transition:width .45s}
+.pillar:hover{transform:translateY(-10px);box-shadow:0 26px 50px rgba(0,0,0,.12);border-color:transparent}
+.pillar:hover::after{width:100%}
+.pillar .ic{width:52px;height:52px;border-radius:14px;margin-bottom:22px}
+.pillar .ic svg{width:24px;height:24px}
+.pillar:hover .ic{background:var(--grad);transform:scale(1.1) rotate(-6deg);box-shadow:0 10px 24px rgba(244,125,32,.4)}
+.pillar:hover .ic svg{stroke:#fff}
+.pillar h3{font-size:19px;font-weight:800;margin-bottom:10px}
+.pillar p{color:var(--muted);font-size:15px}
+
+/* nosotros */
+.about-img{position:relative}
+.about-img::before{content:"";position:absolute;inset:-10px;border-radius:28px;background:var(--grad);filter:blur(30px);opacity:.35;transition:opacity .4s}
+.about-img:hover::before{opacity:.7}
+.about-img img{position:relative;border-radius:22px;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 70%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.about-img:hover img{transform:scale(1.025)}
+.about p{font-size:16px;margin-bottom:16px}
+.about p strong{color:#fff}
+.about .btn{margin-top:10px}
+
+/* retos */
+.chal{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin:48px auto 44px;max-width:1040px}
+.ch{flex:1 1 280px;max-width:330px;background:var(--carbon-2);border:1px solid #3a3435;border-radius:20px;padding:26px;cursor:pointer;transition:all .4s cubic-bezier(.2,.7,.2,1);text-align:left}
+.ch:hover,.ch.open{transform:translateY(-6px);border-color:rgba(244,125,32,.6);box-shadow:0 20px 44px rgba(0,0,0,.4)}
+.ch .ic{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.07);margin-bottom:18px}
+.ch .ic svg{stroke:#cfc7c3}
+.ch:hover .ic,.ch.open .ic{background:var(--grad);transform:scale(1.08) rotate(-6deg)}
+.ch:hover .ic svg,.ch.open .ic svg{stroke:#fff}
+.ch h3{font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;transition:color .3s}
+.ch:hover h3,.ch.open h3{color:var(--naranja)}
+.ch .more{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8f8682;display:inline-flex;gap:6px;transition:color .3s,gap .3s}
+.ch:hover .more{color:var(--naranja);gap:10px}
+.ch .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.ch .ans>p{overflow:hidden;font-size:14px;color:var(--on-dark-muted)}
+.ch.open .ans{grid-template-rows:1fr}
+.ch.open .ans>p{padding-top:12px}
+.ch.open .more{display:none}
+
+/* diferenciadores */
+.dlist{list-style:none;display:grid;gap:8px;margin:24px 0 30px}
+.dlist li{display:flex;gap:14px;padding:12px 14px;border-radius:14px;font-size:15px;color:var(--muted);transition:background .3s,transform .3s}
+.dlist li:hover{background:var(--bg-alt);transform:translateX(6px)}
+.dlist li::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;margin-top:1px;background:rgba(244,125,32,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f47d20' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat;transition:background-color .3s}
+.dlist li:hover::before{background-color:rgba(244,125,32,.3)}
+.dlist b{color:var(--text)}
+
+/* carrusel */
+.marq{background:var(--carbon);padding:22px 0;overflow:hidden}
+.track{display:flex;gap:16px;width:max-content;animation:scroll 45s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.track img{height:240px;width:auto;border-radius:14px;filter:grayscale(.85) brightness(.85);transition:filter .4s,transform .4s}
+.track img:hover{filter:none;transform:scale(1.04)}
+@media (max-width:640px){.track img{height:170px}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+
+/* flexibilidad */
+#flex{background:linear-gradient(115deg,var(--bg) 60%,var(--bg-alt) 60%);padding-top:150px}
+.fcard{position:relative;background:var(--carbon);border-radius:40px;padding:64px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;box-shadow:0 40px 80px rgba(0,0,0,.25)}
+.fcard h2{color:#fff}
+.fcard p{color:var(--on-dark-muted);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.pills span{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:9px 14px;border-radius:999px;transition:all .3s}
+.pills span::before{content:"";width:16px;height:16px;border-radius:50%;background:rgba(244,125,32,.2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f47d20' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/10px no-repeat}
+.pills span:hover{background:var(--grad);border-color:transparent;transform:translateY(-3px)}
+.fcard .mimg{position:relative;margin:-150px -30px -110px 0}
+.fcard .mimg img{width:100%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45));transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.fcard:hover .mimg img{transform:translateY(-10px) rotate(-1.5deg) scale(1.03)}
+@media (max-width:900px){#flex{padding-top:64px}.fcard{grid-template-columns:1fr;padding:40px 28px;border-radius:28px}.fcard .mimg{margin:20px auto -40px;max-width:340px}}
+
+/* contacto */
+#contacto{background:var(--carbon);overflow:hidden}
+#contacto .bg{position:absolute;inset:0;background:url(img/portada.webp) center/cover;opacity:.12;filter:grayscale(1)}
+#contacto .wrap{position:relative}
+#contacto h2{color:#fff}
+#contacto .lead{color:var(--on-dark-muted)}
+.cform{max-width:640px;margin:40px auto 0}
+.cinfo{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px}
+.cinfo a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#ece6e2;font-size:14.5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:12px 18px;border-radius:999px;transition:all .3s}
+.cinfo a:hover{border-color:var(--naranja);color:#fff;transform:translateY(-3px);background:rgba(244,125,32,.12)}
+.cinfo svg{flex:none;width:18px;height:18px;stroke:var(--naranja);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+footer{background:#141112;color:#a69e9a;padding:56px 0 28px;font-size:14px}
+footer .top{display:grid;grid-template-columns:1.3fr 1fr .8fr 1.1fr;gap:36px;margin-bottom:36px}
+@media (max-width:900px){footer .top{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){footer .top{grid-template-columns:1fr}}
+footer .logo img{height:54px;width:auto;margin-bottom:16px}
+footer h4{color:#fff;font-size:12px;margin-bottom:16px;letter-spacing:.14em;text-transform:uppercase}
+footer ul{list-style:none;display:grid;gap:10px}
+footer a{text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--naranja)}
+footer .ci{display:flex;gap:10px;align-items:center}
+footer .ci span{flex:none;width:32px;height:32px;border-radius:9px;background:rgba(244,125,32,.12);display:flex;align-items:center;justify-content:center}
+footer .ci svg{width:15px;height:15px;stroke:var(--naranja);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+footer .map{display:block;border:1px solid #2f2a2b;border-radius:14px;padding:16px;transition:border-color .3s}
+footer .map:hover{border-color:var(--naranja)}
+footer .map b{display:block;color:#fff;margin-bottom:4px}
+footer .bottom{border-top:1px solid #2b2627;padding-top:22px;text-align:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+footer .bottom em{font-style:normal;color:var(--naranja)}
+
+.wa-f{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.3);transition:transform .25s}
+.wa-f::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25d366;animation:ping 2.2s cubic-bezier(0,0,.2,1) infinite;z-index:-1}
+@keyframes ping{75%,100%{transform:scale(1.7);opacity:0}}
+.wa-f:hover{transform:scale(1.1)}
+.wa-f svg{width:30px;height:30px;fill:#fff}
+@media (max-width:480px){.wa-f{right:16px;bottom:16px;width:54px;height:54px}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="BMD Auto Grinding">
+      <img class="w" src="img/logo-bmd-blanco.png" alt="BMD Auto Grinding">
+      <img class="b" src="img/logo-bmd-negro.png" alt="">
+    </a>
+    <nav>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#diferenciadores">Diferenciadores</a>
+      <a href="#maquinas">Máquinas</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn" href="#cotizar">Cotizar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="rv l">
+      <h1>Máquinas para <em>rebabeo</em> de piezas fundidas</h1>
+      <p class="sub">Elimine el proceso manual, reduzca costos y estandarice el acabado.</p>
+      <ul class="ticks">
+        <li>Solución para piezas fundidas de acero, hierro, aluminio y otros materiales</li>
+        <li>Alternativa técnica a las celdas robóticas tradicionales</li>
+        <li>Venta, instalación y soporte técnico en México</li>
+      </ul>
+      <a class="btn out" href="#maquinas">Ver máquinas <span class="arr">→</span></a>
+    </div>
+    <form class="form lead-form rv r" id="cotizar">
+      <h3>Solicite su cotización</h3>
+      <p class="sub">Llene sus datos y lo contactamos para darle seguimiento.</p>
+      <div class="row2">
+        <div class="f"><label for="n1">Nombre completo</label><input id="n1" name="nombre" required autocomplete="name" placeholder="Su nombre"></div>
+        <div class="f"><label for="e1">Empresa</label><input id="e1" name="empresa" required autocomplete="organization" placeholder="Nombre de la fundidora"></div>
+      </div>
+      <div class="row2">
+        <div class="f"><label for="t1">Teléfono (con lada)</label><input id="t1" name="telefono" type="tel" required placeholder="81 1234 5678" autocomplete="tel"></div>
+        <div class="f"><label for="c1">Correo empresarial</label><input id="c1" name="correo" type="email" required autocomplete="email" placeholder="usted@empresa.com"></div>
+      </div>
+      <div class="f"><label for="m1">Material principal de la pieza</label>
+        <select id="m1" name="material" required>
+          <option value="">Seleccione el material principal</option><option>Hierro</option><option>Acero</option><option>Aluminio</option><option>Otro</option>
+        </select></div>
+      <button class="btn" type="submit">Enviar</button>
+      <p class="safe">Sus datos están seguros y no se comparten con terceros.</p>
+    </form>
+  </div>
+</section>
+
+<section id="maquinas">
+  <div class="wrap">
+    <div class="head">
+      <div class="rv">
+        <div class="bar"></div>
+        <h2>Soluciones CNC para rebabeo automatizado de piezas fundidas</h2>
+        <p class="lead">BMD Auto Grinding ofrece máquinas CNC de 5 ejes especializadas en rebabeo automatizado.</p>
+      </div>
+      <a class="btn out rv" href="#cotizar">Solicitar evaluación</a>
+    </div>
+    <div class="machines" id="machines"></div>
+  </div>
+</section>
+
+<section id="gv230">
+  <div class="wrap">
+    <div class="feat-grid">
+      <div class="vwrap rv z">
+        <div class="glow"></div>
+        <div class="vbox v916"><video src="img/video-gv230.mp4" poster="img/poster-gv230.jpg" muted loop playsinline preload="none" data-auto></video></div>
+      </div>
+      <div class="rv r">
+        <span class="eyebrow">Destacada</span>
+        <h2>Máquina destacada <span>GV 230</span></h2>
+        <p class="lead">Centro de rebabeo CNC de 5 ejes y doble pallet: mientras la máquina trabaja una pieza, el operador ya carga la siguiente.</p>
+        <div class="specs">
+          <div><b>500 × 300</b><span>mm diámetro × altura</span></div>
+          <div><b>40 kg</b><span>pieza y fixture</span></div>
+          <div><b>7.5 kW</b><span>potencia disco 1</span></div>
+        </div>
+        <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20una%20cotizaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%20230%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar cotización</a>
+      </div>
+    </div>
+    <div class="apps rv">
+      <p class="t">Atendemos aplicaciones en</p>
+      <div class="row"><span>Hierro</span><span>Acero</span><span>Aluminio</span><span>Otros materiales fundidos</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="productividad">
+  <div class="blob" style="top:-200px;right:-160px"></div>
+  <div class="blob" style="bottom:-200px;left:-160px"></div>
+  <div class="wrap split">
+    <div class="vwrap rv l">
+      <div class="glow"></div>
+      <div class="vbox v11"><video src="img/video-productividad.mp4" poster="img/poster-productividad.jpg" muted loop playsinline preload="none" data-auto></video></div>
+    </div>
+    <div class="rv r">
+      <div class="bar"></div>
+      <h2>Eficiencia y productividad comprobadas</h2>
+      <div class="kpis">
+        <div class="kpi">
+          <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>Productividad</h3>
+          <div class="r">Antes <b>1 op. / 60 pzas/h</b></div>
+          <div class="r">Ahora <b class="ok">1 op. / 130 pzas/h</b></div>
+          <div class="res">Resultado <b>+116% piezas/hora</b></div>
+        </div>
+        <div class="kpi">
+          <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M19 5L5 19M6.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM17.5 20a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>Scrap en acabado</h3>
+          <div class="r">Antes <b>3% de pérdida</b></div>
+          <div class="r">Ahora <b class="ok">0% de pérdida</b></div>
+          <div class="res">Resultado <b>Cero scrap</b></div>
+        </div>
+      </div>
+      <p class="ben-t">Otros beneficios</p>
+      <div class="bens">
+        <div class="ben"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span>Gran mejora en el ambiente de trabajo del operador</div>
+        <div class="ben"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></span>Mejor acabado visual de la pieza</div>
+        <div class="ben"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>Menor gasto en herramientas abrasivas</div>
+        <div class="ben"><span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>Menor rotación de personal</div>
+      </div>
+      <a class="btn" href="#cotizar">Solicitar evaluación técnica <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="bar"></div>
+      <h2>Pilares que hacen posible la automatización en su fundidora</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><h3>Inversión inicial accesible</h3><p>Nuestra solución CNC requiere una inversión bastante menor que una celda robótica tradicional, lo que hace viable automatizar incluso en fundidoras medianas.</p></div>
+      <div class="pillar rv"><span class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></span><h3>Fixture simple y económico</h3><p>El fixture es sencillo, rápido de fabricar y de bajo costo, así puede trabajar con distintas piezas sin grandes inversiones adicionales.</p></div>
+      <div class="pillar rv"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9l3 3-3 3M13 15h4"/></svg></span><h3>Programación sencilla</h3><p>La programación es intuitiva y la puede hacer su propio equipo, sin necesidad de especialistas en robótica.</p></div>
+    </div>
+    <div class="center rv"><a class="btn" href="#cotizar">Solicitar evaluación técnica <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<section class="dark" id="nosotros">
+  <div class="wrap split about">
+    <div class="about-img rv l"><img src="img/fachada-1.jpg" alt="Nuestra nave en el Parque Industrial Navetec, Querétaro" loading="lazy"></div>
+    <div class="rv r">
+      <div class="bar"></div>
+      <h2>Sobre BMD Auto Grinding</h2>
+      <p><strong>BMD Auto Grinding</strong> es la marca de Bramund for Foundries dedicada al rebabeo automatizado con CNC, enfocada en subir la productividad de las fundidoras y bajar los costos del área de acabado.</p>
+      <p>Nuestro objetivo es apoyar la modernización de los procesos productivos, reducir la dependencia de mano de obra manual y hacer más competitivas a las fundidoras de México.</p>
+      <p>Junto con <strong>Weijing</strong>, fabricante internacional de referencia, ofrecemos en México máquinas CNC de 5 ejes desarrolladas específicamente para fundición, con atención y soporte desde Querétaro.</p>
+      <a class="btn" href="#cotizar">Solicitar cotización <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="retos" style="padding-top:0">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="bar"></div>
+      <span class="eyebrow">Retos y soluciones</span>
+      <h2>Esta solución es para su fundidora si enfrenta:</h2>
+    </div>
+    <div class="chal" id="chal"></div>
+    <div class="center rv"><a class="btn" href="#contacto">Contactar <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<section id="diferenciadores">
+  <div class="wrap split">
+    <div class="vwrap rv l">
+      <div class="glow"></div>
+      <div class="vbox v45"><video src="img/video-chispas.mp4" poster="img/poster-chispas.jpg" muted loop playsinline preload="none" data-auto></video></div>
+    </div>
+    <div class="rv r">
+      <div class="bar"></div>
+      <h2>Diferenciadores</h2>
+      <ul class="dlist">
+        <li><span><b>Programación fácil:</b> programación por puntos, con una interfaz desarrollada especialmente para rebabeo. Los programas se crean de forma rápida, intuitiva y eficiente.</span></li>
+        <li><span><b>Fixtures simples y económicos:</b> funcionan como una cuna para la pieza fundida. Son fáciles de fabricar, accesibles y prácticos en el día a día.</span></li>
+        <li><span><b>Set up rápido:</b> cambiar el fixture y cargar un programa nuevo toma menos de 15 minutos, así la automatización conviene incluso para lotes pequeños.</span></li>
+        <li><span><b>Premaquinado:</b> gracias a la alta precisión y consistencia del CNC, se pueden hacer operaciones de premaquinado en varias piezas, ahorrando costos y pasos posteriores.</span></li>
+        <li><span><b>Medición con láser:</b> el sistema láser detecta variaciones de medida en cada pieza y evita colisiones, para un proceso seguro y confiable.</span></li>
+        <li><span><b>Discos diamantados de alto desempeño:</b> desarrollados para rebabeo, con gran poder de desbaste, durabilidad excepcional y mejor rendimiento en producción.</span></li>
+      </ul>
+      <a class="btn" href="#cotizar">Solicitar evaluación técnica <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="marq" aria-label="Galería de fotos">
+  <div class="track" id="track"></div>
+</div>
+
+<section id="flex">
+  <div class="wrap">
+    <div class="fcard rv z">
+      <div>
+        <h2>Una solución que se adapta a su realidad</h2>
+        <p>Nuestra tecnología funciona para:</p>
+        <div class="pills"><span>Baja serie</span><span>Media serie</span><span>Alta serie</span></div>
+        <a class="btn" href="#contacto">Hablar con un especialista <span class="arr">→</span></a>
+      </div>
+      <div class="mimg"><img src="img/gv120.webp" alt="Máquina GV 120 de BMD Auto Grinding" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="center rv">
+      <div class="bar"></div>
+      <h2>Llene sus datos y solicite su cotización</h2>
+      <p class="lead">Lo contactamos para darle seguimiento.</p>
+    </div>
+    <form class="form lead-form cform rv">
+      <div class="row2">
+        <div class="f"><label for="n2">Nombre completo</label><input id="n2" name="nombre" required autocomplete="name" placeholder="Su nombre"></div>
+        <div class="f"><label for="e2">Empresa</label><input id="e2" name="empresa" required autocomplete="organization" placeholder="Nombre de la fundidora"></div>
+      </div>
+      <div class="row2">
+        <div class="f"><label for="t2">Teléfono (con lada)</label><input id="t2" name="telefono" type="tel" required placeholder="81 1234 5678" autocomplete="tel"></div>
+        <div class="f"><label for="c2">Correo empresarial</label><input id="c2" name="correo" type="email" required autocomplete="email" placeholder="usted@empresa.com"></div>
+      </div>
+      <div class="f"><label for="m2">Material principal de la pieza</label>
+        <select id="m2" name="material" required>
+          <option value="">Seleccione el material principal</option><option>Hierro</option><option>Acero</option><option>Aluminio</option><option>Otro</option>
+        </select></div>
+      <button class="btn" type="submit">Enviar</button>
+      <p class="safe">Sus datos están seguros y no se comparten con terceros.</p>
+    </form>
+    <div class="cinfo rv">
+      <a href="https://wa.me/5547991470625" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+55 47 99147-0625</a>
+      <a href="mailto:martin@bramund.com"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>martin@bramund.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">
+        <img src="img/logo-bmd-blanco.png" alt="BMD Auto Grinding">
+        <p>Soluciones CNC para rebabeo automatizado de piezas fundidas. Tecnología avanzada para su fundidora.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a class="ci" href="mailto:martin@bramund.com"><span><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>martin@bramund.com</a></li>
+          <li><a class="ci" href="https://wa.me/5547991470625" target="_blank" rel="noopener"><span><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>+55 47 99147-0625</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Secciones</h4>
+        <ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#diferenciadores">Diferenciadores</a></li><li><a href="#maquinas">Máquinas</a></li><li><a href="#contacto">Contacto</a></li></ul>
+      </div>
+      <div>
+        <h4>Cómo llegar</h4>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Libramiento+Surponiente+45667+Parque+Industrial+Navetec+Santa+Rosa+de+J%C3%A1uregui+Quer%C3%A9taro" target="_blank" rel="noopener"><b>Abrir en Google Maps →</b>Libramiento Surponiente 45667, Int. 10 D, Parque Industrial Navetec, Santa Rosa de Jáuregui, Qro., C.P. 76220</a>
+      </div>
+    </div>
+    <div class="bottom">© <span id="yr">2026</span> BMD Auto <em>Grinding</em> · Bramund for Foundries</div>
+  </div>
+</footer>
+
+<a class="wa-f" href="https://wa.me/5547991470625" target="_blank" rel="noopener" aria-label="Escríbanos por WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+
+<script>
+const WA="5547991470625";
+const MAQ=[
+  {n:"GV 120",img:"gv120.webp",dh:"350 × 200 mm",peso:"25 kg",d1:"3.7 kW",d2:"3.5 kW",pm:"2,085 kg",dim:"2141 × 1864 × 2340 mm",t:"Pallet sencillo"},
+  {n:"GV 130",img:"gv130.webp",dh:"500 × 250 mm",peso:"40 kg",d1:"5.5 kW",d2:"3.5 kW",pm:"2,500 kg",dim:"2555 × 2120 × 2588 mm",t:"Pallet sencillo"},
+  {n:"GV 230",img:"gv230.webp",dh:"500 × 300 mm",peso:"40 kg",d1:"7.5 kW",d2:"3.5 kW",pm:"3,300 kg",dim:"3030 × 2400 × 2300 mm",t:"Doble pallet",feat:true},
+  {n:"GV 270",img:"gv270.webp",dh:"700 × 400 mm",peso:"90 kg",d1:"7.5 kW",d2:"6 kW",pm:"6,210 kg",dim:"3948 × 2223 × 2953 mm",t:"Doble pallet"},
+  {n:"GV 2100",img:"gv2100.webp",dh:"1000 × 400 mm",peso:"120 kg",d1:"7.5 kW",d2:"6 kW",pm:"6,420 kg",dim:"4528 × 2920 × 2922 mm",t:"Doble pallet"}
+];
+const waIcon='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>';
+document.getElementById("machines").innerHTML=MAQ.map((m,i)=>`
+  <article class="m rv${m.feat?" feat":""}" style="transition-delay:${i*80}ms">
+    <div class="ph"><img src="img/${m.img}" alt="Máquina ${m.n}" loading="lazy"></div>
+    <div class="body">
+      <h3>${m.n}</h3>
+      <ul>
+        <li><span><b>Diámetro × altura:</b> ${m.dh}</span></li>
+        <li><span><b>Peso total</b> (pieza y fixture): ${m.peso}</span></li>
+        <li><span><b>Potencia disco 1:</b> ${m.d1}</span></li>
+        <li><span><b>Potencia disco 2:</b> ${m.d2}</span></li>
+        <li><span><b>Peso de la máquina:</b> ${m.pm}</span></li>
+        <li><span><b>Dimensiones generales:</b> ${m.dim}</span></li>
+        <li><span><b>Tipo:</b> ${m.t}</span></li>
+      </ul>
+      <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent("Hola, quisiera información de la máquina "+m.n+" de BMD Auto Grinding.")}">${waIcon}Solicitar información</a>
+    </div>
+  </article>`).join("");
+
+const RETOS=[
+  ["Falta de mano de obra en el rebabeo","Un solo operador atiende la máquina y produce más del doble de piezas por hora. Deja de depender de conseguir y retener personal para un trabajo pesado.",'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17 8l5 5M22 8l-5 5"/>'],
+  ["Mucho retrabajo en el acabado","El CNC repite el mismo programa en cada pieza y el láser corrige las variaciones de medida: el acabado sale igual siempre y el scrap baja a cero.",'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/>'],
+  ["Cuellos de botella en producción","De 60 a 130 piezas por hora con un operador. El acabado deja de ser el paso que frena a toda la planta.",'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4M12 16h.01"/>'],
+  ["Poca previsibilidad en las entregas","Un ritmo constante y medible permite planear la producción y comprometer fechas con confianza.",'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h3"/>'],
+  ["Riesgo operativo en el área de acabado","El operador sale de la zona de polvo, chispas y vibración. Mejor ambiente de trabajo y menos rotación de personal.",'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>']
+];
+const chal=document.getElementById("chal");
+chal.innerHTML=RETOS.map(([t,a,ic],i)=>`<div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:${i*70}ms">
+  <span class="ic"><svg viewBox="0 0 24 24">${ic}</svg></span><h3>${t}</h3>
+  <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>${a}</p></div></div>`).join("");
+chal.addEventListener("click",e=>{const c=e.target.closest(".ch");if(!c)return;c.classList.toggle("open");c.setAttribute("aria-expanded",c.classList.contains("open"))});
+chal.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("ch")){e.preventDefault();e.target.click()}});
+
+const FOTOS=["portada.webp","galeria-2.webp","fachada-2.jpg","galeria-1.webp","linea-gv.webp","galeria-3.webp","fachada-1.jpg"];
+document.getElementById("track").innerHTML=[...FOTOS,...FOTOS].map((f,i)=>`<img src="img/${f}" alt="" loading="lazy"${i>=FOTOS.length?' aria-hidden="true"':""}>`).join("");
+
+document.querySelectorAll(".lead-form").forEach(f=>f.addEventListener("submit",e=>{
+  e.preventDefault();
+  const d=Object.fromEntries(new FormData(f));
+  const txt=`Hola, quiero una cotización de BMD Auto Grinding.\n\nNombre: ${d.nombre}\nEmpresa: ${d.empresa}\nTeléfono: ${d.telefono}\nCorreo: ${d.correo}\nMaterial principal: ${d.material}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`,"_blank","noopener");
+}));
+
+// la barra de arriba se vuelve blanca al bajar
+const hdr=document.getElementById("top");
+const onScroll=()=>hdr.classList.toggle("solid",scrollY>40);
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+// los bloques aparecen al bajar; los videos corren solo cuando se ven
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+  const vo=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.preload="auto";const p=v.play();if(p)p.catch(()=>{})}else v.pause()}),{threshold:.25});
+  document.querySelectorAll("video[data-auto]").forEach(v=>vo.observe(v));
+}else{
+  document.querySelectorAll(".rv").forEach(el=>el.classList.add("in"));
+  document.querySelectorAll("video[data-auto]").forEach(v=>{v.preload="auto";v.play().catch(()=>{})});
+}
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
