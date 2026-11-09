@@ -286,6 +286,17 @@ header.solid .nav nav a.lang{border-color:var(--line)}
 .cinfo a:hover{border-color:var(--naranja);color:#fff;transform:translateY(-3px);background:rgba(244,125,32,.12)}
 .cinfo svg{flex:none;width:18px;height:18px;stroke:var(--naranja);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
+/* preguntas frecuentes */
+#faq{background:var(--bg-alt)}
+.faq{max-width:860px;margin:40px auto 0;display:grid;gap:12px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;transition:border-color .3s,box-shadow .3s}
+.faq details[open]{border-color:rgba(244,125,32,.5);box-shadow:0 12px 30px rgba(0,0,0,.06)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 56px 20px 22px;font-weight:800;font-size:16.5px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:rgba(244,125,32,.12);color:var(--naranja);display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 22px 20px;color:var(--muted);font-size:15px}
+
 footer{background:#141112;color:#a69e9a;padding:56px 0 28px;font-size:14px}
 footer .top{display:grid;grid-template-columns:1.3fr 1fr .8fr 1.1fr;gap:36px;margin-bottom:36px}
 @media (max-width:900px){footer .top{grid-template-columns:1fr 1fr}}
@@ -311,6 +322,7 @@ footer .bottom em{font-style:normal;color:var(--naranja)}
 .wa-f svg{width:30px;height:30px;fill:#fff}
 @media (max-width:480px){.wa-f{right:16px;bottom:16px;width:54px;height:54px}}
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es el rebabeo de piezas fundidas y por qué automatizarlo?", "acceptedAnswer": {"@type": "Answer", "text": "El rebabeo (también llamado desbarbado o esmerilado) es quitar las rebabas, líneas de partición y excesos de material que quedan en la pieza al salir del molde. Hecho a mano es un trabajo pesado, con polvo, chispas y vibración, y el resultado depende de cada operador. Con una máquina CNC de 5 ejes cada pieza recibe el mismo programa: más piezas por hora, acabado uniforme y menos scrap."}}, {"@type": "Question", "name": "¿Qué diferencia hay entre una máquina CNC de rebabeo y una celda robótica de desbarbado?", "acceptedAnswer": {"@type": "Answer", "text": "Ambas automatizan el acabado, pero la máquina CNC está hecha específicamente para rebabeo: requiere una inversión bastante menor que una celda robótica tradicional, usa fixtures simples y económicos, y la programación por puntos la hace su propio equipo, sin especialistas en robótica."}}, {"@type": "Question", "name": "¿Qué piezas y materiales se pueden rebabear?", "acceptedAnswer": {"@type": "Answer", "text": "Piezas fundidas de hierro, acero, aluminio y otros materiales. Según el modelo, desde piezas de 350 × 200 mm y 25 kg (GV 120) hasta 1000 × 400 mm y 120 kg con fixture (GV 2100)."}}, {"@type": "Question", "name": "¿Conviene para lotes pequeños o solo para alta producción?", "acceptedAnswer": {"@type": "Answer", "text": "Funciona para baja, media y alta serie. Cambiar el fixture y cargar un programa nuevo toma menos de 15 minutos, así que la automatización conviene incluso para lotes pequeños."}}, {"@type": "Question", "name": "¿Cuánto aumenta la productividad?", "acceptedAnswer": {"@type": "Answer", "text": "En una aplicación real se pasó de 60 a 130 piezas por hora con un solo operador (+116%) y el scrap en acabado bajó de 3% a 0%."}}, {"@type": "Question", "name": "¿Dónde están y qué soporte dan en México?", "acceptedAnswer": {"@type": "Answer", "text": "Estamos en el Parque Industrial Navetec, en Santa Rosa de Jáuregui, Querétaro. BMD Auto Grinding es la marca de Bramund for Foundries para rebabeo automatizado: hacemos la venta, instalación y soporte técnico de las máquinas Weijing en México."}}]}</script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -376,7 +388,88 @@ footer .bottom em{font-style:normal;color:var(--naranja)}
       </div>
       <a class="btn out rv" href="#cotizar">Solicitar evaluación</a>
     </div>
-    <div class="machines" id="machines"></div>
+    <div class="machines" id="machines">
+      <article class="m rv" style="transition-delay:0ms">
+        <div class="ph"><img src="img/gv120.webp" alt="Máquina CNC de rebabeo GV 120" loading="lazy"></div>
+        <div class="body">
+          <h3>GV 120</h3>
+          <ul>
+            <li><span><b>Diámetro × altura:</b> 350 × 200 mm</span></li>
+            <li><span><b>Peso total</b> (pieza y fixture): 25 kg</span></li>
+            <li><span><b>Potencia disco 1:</b> 3.7 kW</span></li>
+            <li><span><b>Potencia disco 2:</b> 3.5 kW</span></li>
+            <li><span><b>Peso de la máquina:</b> 2,085 kg</span></li>
+            <li><span><b>Dimensiones generales:</b> 2141 × 1864 × 2340 mm</span></li>
+            <li><span><b>Tipo:</b> Pallet sencillo</span></li>
+          </ul>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%20120%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar información</a>
+        </div>
+      </article>
+      <article class="m rv" style="transition-delay:80ms">
+        <div class="ph"><img src="img/gv130.webp" alt="Máquina CNC de rebabeo GV 130" loading="lazy"></div>
+        <div class="body">
+          <h3>GV 130</h3>
+          <ul>
+            <li><span><b>Diámetro × altura:</b> 500 × 250 mm</span></li>
+            <li><span><b>Peso total</b> (pieza y fixture): 40 kg</span></li>
+            <li><span><b>Potencia disco 1:</b> 5.5 kW</span></li>
+            <li><span><b>Potencia disco 2:</b> 3.5 kW</span></li>
+            <li><span><b>Peso de la máquina:</b> 2,500 kg</span></li>
+            <li><span><b>Dimensiones generales:</b> 2555 × 2120 × 2588 mm</span></li>
+            <li><span><b>Tipo:</b> Pallet sencillo</span></li>
+          </ul>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%20130%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar información</a>
+        </div>
+      </article>
+      <article class="m rv feat" style="transition-delay:160ms">
+        <div class="ph"><img src="img/gv230.webp" alt="Máquina CNC de rebabeo GV 230" loading="lazy"></div>
+        <div class="body">
+          <h3>GV 230</h3>
+          <ul>
+            <li><span><b>Diámetro × altura:</b> 500 × 300 mm</span></li>
+            <li><span><b>Peso total</b> (pieza y fixture): 40 kg</span></li>
+            <li><span><b>Potencia disco 1:</b> 7.5 kW</span></li>
+            <li><span><b>Potencia disco 2:</b> 3.5 kW</span></li>
+            <li><span><b>Peso de la máquina:</b> 3,300 kg</span></li>
+            <li><span><b>Dimensiones generales:</b> 3030 × 2400 × 2300 mm</span></li>
+            <li><span><b>Tipo:</b> Doble pallet</span></li>
+          </ul>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%20230%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar información</a>
+        </div>
+      </article>
+      <article class="m rv" style="transition-delay:240ms">
+        <div class="ph"><img src="img/gv270.webp" alt="Máquina CNC de rebabeo GV 270" loading="lazy"></div>
+        <div class="body">
+          <h3>GV 270</h3>
+          <ul>
+            <li><span><b>Diámetro × altura:</b> 700 × 400 mm</span></li>
+            <li><span><b>Peso total</b> (pieza y fixture): 90 kg</span></li>
+            <li><span><b>Potencia disco 1:</b> 7.5 kW</span></li>
+            <li><span><b>Potencia disco 2:</b> 6 kW</span></li>
+            <li><span><b>Peso de la máquina:</b> 6,210 kg</span></li>
+            <li><span><b>Dimensiones generales:</b> 3948 × 2223 × 2953 mm</span></li>
+            <li><span><b>Tipo:</b> Doble pallet</span></li>
+          </ul>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%20270%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar información</a>
+        </div>
+      </article>
+      <article class="m rv" style="transition-delay:320ms">
+        <div class="ph"><img src="img/gv2100.webp" alt="Máquina CNC de rebabeo GV 2100" loading="lazy"></div>
+        <div class="body">
+          <h3>GV 2100</h3>
+          <ul>
+            <li><span><b>Diámetro × altura:</b> 1000 × 400 mm</span></li>
+            <li><span><b>Peso total</b> (pieza y fixture): 120 kg</span></li>
+            <li><span><b>Potencia disco 1:</b> 7.5 kW</span></li>
+            <li><span><b>Potencia disco 2:</b> 6 kW</span></li>
+            <li><span><b>Peso de la máquina:</b> 6,420 kg</span></li>
+            <li><span><b>Dimensiones generales:</b> 4528 × 2920 × 2922 mm</span></li>
+            <li><span><b>Tipo:</b> Doble pallet</span></li>
+          </ul>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/5547991470625?text=Hola%2C%20quisiera%20informaci%C3%B3n%20de%20la%20m%C3%A1quina%20GV%202100%20de%20BMD%20Auto%20Grinding."><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>Solicitar información</a>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -479,7 +572,23 @@ footer .bottom em{font-style:normal;color:var(--naranja)}
       <span class="eyebrow">Retos y soluciones</span>
       <h2>Esta solución es para su fundidora si enfrenta:</h2>
     </div>
-    <div class="chal" id="chal"></div>
+    <div class="chal" id="chal">
+      <div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:0ms">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17 8l5 5M22 8l-5 5"/></svg></span><h3>Falta de mano de obra en el rebabeo</h3>
+        <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>Un solo operador atiende la máquina y produce más del doble de piezas por hora. Deja de depender de conseguir y retener personal para un trabajo pesado.</p></div></div>
+      <div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:70ms">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg></span><h3>Mucho retrabajo en el acabado</h3>
+        <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>El CNC repite el mismo programa en cada pieza y el láser corrige las variaciones de medida: el acabado sale igual siempre y el scrap baja a cero.</p></div></div>
+      <div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:140ms">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4M12 16h.01"/></svg></span><h3>Cuellos de botella en producción</h3>
+        <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>De 60 a 130 piezas por hora con un operador. El acabado deja de ser el paso que frena a toda la planta.</p></div></div>
+      <div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:210ms">
+        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h3"/></svg></span><h3>Poca previsibilidad en las entregas</h3>
+        <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>Un ritmo constante y medible permite planear la producción y comprometer fechas con confianza.</p></div></div>
+      <div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:280ms">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><h3>Riesgo operativo en el área de acabado</h3>
+        <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>El operador sale de la zona de polvo, chispas y vibración. Mejor ambiente de trabajo y menos rotación de personal.</p></div></div>
+    </div>
     <div class="center rv"><a class="btn" href="#contacto">Contactar <span class="arr">→</span></a></div>
   </div>
 </section>
@@ -520,6 +629,24 @@ footer .bottom em{font-style:normal;color:var(--naranja)}
         <a class="btn" href="#contacto">Hablar con un especialista <span class="arr">→</span></a>
       </div>
       <div class="mimg"><img src="img/gv120.webp" alt="Máquina GV 120 de BMD Auto Grinding" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="center rv">
+      <div class="bar"></div>
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Rebabeo automatizado de piezas fundidas: lo que más nos preguntan</h2>
+    </div>
+    <div class="faq rv">
+      <details><summary>¿Qué es el rebabeo de piezas fundidas y por qué automatizarlo?</summary><p>El rebabeo (también llamado desbarbado o esmerilado) es quitar las rebabas, líneas de partición y excesos de material que quedan en la pieza al salir del molde. Hecho a mano es un trabajo pesado, con polvo, chispas y vibración, y el resultado depende de cada operador. Con una máquina CNC de 5 ejes cada pieza recibe el mismo programa: más piezas por hora, acabado uniforme y menos scrap.</p></details>
+      <details><summary>¿Qué diferencia hay entre una máquina CNC de rebabeo y una celda robótica de desbarbado?</summary><p>Ambas automatizan el acabado, pero la máquina CNC está hecha específicamente para rebabeo: requiere una inversión bastante menor que una celda robótica tradicional, usa fixtures simples y económicos, y la programación por puntos la hace su propio equipo, sin especialistas en robótica.</p></details>
+      <details><summary>¿Qué piezas y materiales se pueden rebabear?</summary><p>Piezas fundidas de hierro, acero, aluminio y otros materiales. Según el modelo, desde piezas de 350 × 200 mm y 25 kg (GV 120) hasta 1000 × 400 mm y 120 kg con fixture (GV 2100).</p></details>
+      <details><summary>¿Conviene para lotes pequeños o solo para alta producción?</summary><p>Funciona para baja, media y alta serie. Cambiar el fixture y cargar un programa nuevo toma menos de 15 minutos, así que la automatización conviene incluso para lotes pequeños.</p></details>
+      <details><summary>¿Cuánto aumenta la productividad?</summary><p>En una aplicación real se pasó de 60 a 130 piezas por hora con un solo operador (+116%) y el scrap en acabado bajó de 3% a 0%.</p></details>
+      <details><summary>¿Dónde están y qué soporte dan en México?</summary><p>Estamos en el Parque Industrial Navetec, en Santa Rosa de Jáuregui, Querétaro. BMD Auto Grinding es la marca de Bramund for Foundries para rebabeo automatizado: hacemos la venta, instalación y soporte técnico de las máquinas Weijing en México.</p></details>
     </div>
   </div>
 </section>
@@ -585,44 +712,9 @@ footer .bottom em{font-style:normal;color:var(--naranja)}
 <a class="wa-f" href="https://wa.me/5547991470625" target="_blank" rel="noopener" aria-label="Escríbanos por WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
 
 <script>
-const WA="5547991470625";
-const MAQ=[
-  {n:"GV 120",img:"gv120.webp",dh:"350 × 200 mm",peso:"25 kg",d1:"3.7 kW",d2:"3.5 kW",pm:"2,085 kg",dim:"2141 × 1864 × 2340 mm",t:"Pallet sencillo"},
-  {n:"GV 130",img:"gv130.webp",dh:"500 × 250 mm",peso:"40 kg",d1:"5.5 kW",d2:"3.5 kW",pm:"2,500 kg",dim:"2555 × 2120 × 2588 mm",t:"Pallet sencillo"},
-  {n:"GV 230",img:"gv230.webp",dh:"500 × 300 mm",peso:"40 kg",d1:"7.5 kW",d2:"3.5 kW",pm:"3,300 kg",dim:"3030 × 2400 × 2300 mm",t:"Doble pallet",feat:true},
-  {n:"GV 270",img:"gv270.webp",dh:"700 × 400 mm",peso:"90 kg",d1:"7.5 kW",d2:"6 kW",pm:"6,210 kg",dim:"3948 × 2223 × 2953 mm",t:"Doble pallet"},
-  {n:"GV 2100",img:"gv2100.webp",dh:"1000 × 400 mm",peso:"120 kg",d1:"7.5 kW",d2:"6 kW",pm:"6,420 kg",dim:"4528 × 2920 × 2922 mm",t:"Doble pallet"}
-];
 const waIcon='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.5 12.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>';
-document.getElementById("machines").innerHTML=MAQ.map((m,i)=>`
-  <article class="m rv${m.feat?" feat":""}" style="transition-delay:${i*80}ms">
-    <div class="ph"><img src="img/${m.img}" alt="Máquina ${m.n}" loading="lazy"></div>
-    <div class="body">
-      <h3>${m.n}</h3>
-      <ul>
-        <li><span><b>Diámetro × altura:</b> ${m.dh}</span></li>
-        <li><span><b>Peso total</b> (pieza y fixture): ${m.peso}</span></li>
-        <li><span><b>Potencia disco 1:</b> ${m.d1}</span></li>
-        <li><span><b>Potencia disco 2:</b> ${m.d2}</span></li>
-        <li><span><b>Peso de la máquina:</b> ${m.pm}</span></li>
-        <li><span><b>Dimensiones generales:</b> ${m.dim}</span></li>
-        <li><span><b>Tipo:</b> ${m.t}</span></li>
-      </ul>
-      <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent("Hola, quisiera información de la máquina "+m.n+" de BMD Auto Grinding.")}">${waIcon}Solicitar información</a>
-    </div>
-  </article>`).join("");
-
-const RETOS=[
-  ["Falta de mano de obra en el rebabeo","Un solo operador atiende la máquina y produce más del doble de piezas por hora. Deja de depender de conseguir y retener personal para un trabajo pesado.",'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17 8l5 5M22 8l-5 5"/>'],
-  ["Mucho retrabajo en el acabado","El CNC repite el mismo programa en cada pieza y el láser corrige las variaciones de medida: el acabado sale igual siempre y el scrap baja a cero.",'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/>'],
-  ["Cuellos de botella en producción","De 60 a 130 piezas por hora con un operador. El acabado deja de ser el paso que frena a toda la planta.",'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4M12 16h.01"/>'],
-  ["Poca previsibilidad en las entregas","Un ritmo constante y medible permite planear la producción y comprometer fechas con confianza.",'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h3"/>'],
-  ["Riesgo operativo en el área de acabado","El operador sale de la zona de polvo, chispas y vibración. Mejor ambiente de trabajo y menos rotación de personal.",'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>']
-];
+const WA="5547991470625";
 const chal=document.getElementById("chal");
-chal.innerHTML=RETOS.map(([t,a,ic],i)=>`<div class="ch rv" tabindex="0" role="button" aria-expanded="false" style="transition-delay:${i*70}ms">
-  <span class="ic"><svg viewBox="0 0 24 24">${ic}</svg></span><h3>${t}</h3>
-  <span class="more">Ver cómo resolverlo <span>→</span></span><div class="ans"><p>${a}</p></div></div>`).join("");
 chal.addEventListener("click",e=>{const c=e.target.closest(".ch");if(!c)return;c.classList.toggle("open");c.setAttribute("aria-expanded",c.classList.contains("open"))});
 chal.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("ch")){e.preventDefault();e.target.click()}});
 
