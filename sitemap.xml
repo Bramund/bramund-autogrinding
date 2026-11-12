@@ -2,16 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://autogrinding.bramund.com/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/"/>
   </url>
   <url>
     <loc>https://autogrinding.bramund.com/en/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/gv-120/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-120/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-120/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-120/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/en/gv-120/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-120/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-120/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-120/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/gv-130/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-130/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-130/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-130/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/en/gv-130/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-130/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-130/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-130/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/gv-230/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-230/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-230/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-230/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/en/gv-230/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-230/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-230/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-230/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/gv-270/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-270/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-270/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-270/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/en/gv-270/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-270/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-270/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-270/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/gv-2100/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-2100/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-2100/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-2100/"/>
+  </url>
+  <url>
+    <loc>https://autogrinding.bramund.com/en/gv-2100/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://autogrinding.bramund.com/gv-2100/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://autogrinding.bramund.com/en/gv-2100/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://autogrinding.bramund.com/gv-2100/"/>
   </url>
 </urlset>
